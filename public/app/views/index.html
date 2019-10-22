@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html  ng-app="MyApp">
+  <head>
+    <base href='/'>
+    <meta charset="utf-8">
+    <title>User Story</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<!-- service -->
+    <script type="text/javascript" src="app/services/authService.js"></script>
+    <script type="text/javascript" src="app/services/userService.js"></script>
+    <script type="text/javascript" src="app/services/storyService.js"></script>
+
+<!-- controller -->
+    <script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/userCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/storyCtrl.js"></script>
+<!-- Directives -->
+    <script type="text/javascript" src="app/directives/reverse.js"></script>
+
+
+    <script type="text/javascript" src="app/app.routes.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+  </head>
+  <body ng-controller="MainController as main">
+
+    <header>
+      <div class="navbar navbar-default" >
+        <div class="container">
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>User Story</a>
+          </div>
+            <ul class="nav navbar-nav">
+              <li> <a href="/users"></a> </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-if="!main.loggedIn"> <a href="/login">Login</a> </li>
+              <li ng-if="!main.loggedIn"> <a href="/signup">Signup</a> </li>
+              <li ng-if="main.loggedIn"> <a href="#">Hello {{ main.user.username }}</a> </li>
+              <li ng-if="main.loggedIn"> <a href="#" ng-click="main.doLogout()">Logout</a> </li>
+            </ul>
+        </div>
+
+      </div>
+    </header>
+
+
+    <main class="container">
+      <div ng-view></div>
+    </main>
+
+  </body>
+</html>
